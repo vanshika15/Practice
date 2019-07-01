@@ -1,0 +1,28 @@
+AURA:
+
+Parses the logs, and present the information in a beautiful way, more of a sort from which analysis can be driven.
+We have some threshold, that if more than  100 500 response come, Aura would slack that to us (in Outage). 
+This threshold is much lower for triggering mails.
+
+http://dash.aura.infoedge.com/app/kibana#/dashboard/Mnj-MainDashboard
+
+
+
+ZABBIX:
+
+It basically monitors server's health (Memory, CPU Utilization etc) and represents the information in a representational manner.
+Generally the random high peaks in case of CPU Utilization is due to some errors in code. 
+A proper estimation is done aprior about the number of servers needed to cater the requests.
+
+https://monitor.ieil.net/zabbix.php?action=dashboard.view
+
+
+For seeing the bandwidth available for the server to take requests, and ratio of availability and non-availablity of server to cater the request can be seen using the following URL: 
+
+http://10.10.113.70/server-status?refresh=2
+
+
+
+
+
+

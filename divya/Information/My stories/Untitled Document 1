@@ -1,0 +1,21 @@
+
+1. For authenticating users to change their primary email:
+	homepage.test2.31938.cluster.infoedge.com/jobseekerapi/authenticateUser
+
+	It recieves input in the following format (JSON):
+	"password" : "aaaaaa"
+
+	It sends output of the following format (JSON):
+	"isVaild" : true
+
+
+2. Further work, i.e. checking if the email entered is available or not (criteria: it should not be same as any of the existing primary emails and usernames), and then sending the verification email is done by the following api:
+	homepage.test2.31938.cluster.infoedge.com/jobseekerapi/saveEmail
+
+	It receives input in the following format (JSON):
+	"alternateEmail" : "testdivyangana@yopmail.com"
+
+	If the email is not available, then it gives the response code: 400
+	And if the email is available, then it sends the verification mail in which a verification link is present, which when clicked would  	verify the user and the primary email is changed. Respond code: 200 (No contents) is created for the same.
+	On docker, since the mails are not being sent, you won't be able to verify that a verification mail is sent.
+	But for your convinience, validation link generated is sent to console, hitting on which would verify the email entered by the user and make it his/her primary email

@@ -1,0 +1,166 @@
+
+
+Docker and Jenking cmd
+BY NITIN SIR:
+
+Jenking deploy: http://jenkins.infoedge.com/job/cluster-deploy/
+
+Resman - http://jenkins.infoedge.com/job/resman-createimage/
+
+Nlogin - http://jenkins.infoedge.com/job/resman-nlogin-createimage/
+
+MNJ - http://jenkins.infoedge.com/job/resman-mnj-createimage/
+
+Cluster Deploy : http://jenkins.infoedge.com/job/cluster-deploy/
+
+Cluster repo for updating tags:
+
+resman -  http://gitlab.infoedge.com/cluster/resman.git
+
+nlogin -  http://gitlab.infoedge.com/cluster/nlogin.git
+
+mnj -  http://gitlab.infoedge.com/cluster/mnj.git
+
+Whitelisted NameSpaces:
+
+swati-khandelwal-test2
+
+omprakash-test2
+
+kumar-d-test2
+
+nitin-k-test2
+
+get all namespace: kubectl --server=192.168.40.101:8080 get namespace
+
+Grep Cluster URL:  kubectl --server=192.168.40.101:8080 --namespace=neha-lohia-test2 describe pods | grep CLUSTER
+
+get all pods : kubectl --server=192.168.40.101:8080 --namespace=omprakash-test2 get pods
+
+delete a pod : kubectl --server=192.168.40.101:8080 –namespace=omprakash-test2 delete pod resman-app-deployment-name-1033069547-lsrlg
+
+interactive terminal : kubectl --server=192.168.40.101:8080 --namespace=omprakash-test2 exec -it resmnj-app-deployment-name-174008284-fw5tb bash
+
+apache rules path : vi /usr/local/appconf/apache/httpd-vhost.conf
+
+apache reload : /usr/local/apache-live/bin/httpd -k graceful
+
+apache logs : tail -f /usr/local/apache/logs/*
+
+delete namespace: kubectl --server=192.168.40.101:8080 delete namespace  omprakash-test2
+
+Update tag:  naukrideployer setup -environment=cluster -target=update -service.deploy=test2 -service.env=test2 -service.namespace=divyangana  -image.tag=v15.24.1-beta404 ./app-kube.json
+
+for Debugand goto this pod: kubectl --server=192.168.40.101:8080 --namespace=omprakash-test2 exec -it resman-app-deployment-name-961438705-fr6mh bash
+
+
+
+docker run -d docker.infoedge.com:5000/config-files/naukriindia/nlogin:latest
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+LATEST TAGS:
+
+nlogin - v8.20.2-beta364
+mnj - v15.24.1-beta439
+resman - v1.12.3-beta647
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+replace a word in the text files:
+
+#find ./ -type f -exec sed -i -e 's/apple/orange/g' {} \;
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+GREP COMMAND
+
+grep -rnw '/path/to/somewhere/' -e 'pattern'
+-r or -R is recursive,
+-n is line number, and
+-w stands for match the whole word.
+-l (lower-case L) can be added to just give the file name of matching files.
+Along with these, --exclude, --include, --exclude-dir flags could be used for efficient searching:
+
+This will only search through those files which have .c or .h extensions:
+grep --include=\*.{c,h} -rnw '/path/to/somewhere/' -e "pattern"
+
+
+This will exclude searching all the files ending with .o extension:
+grep --exclude=*.o -rnw '/path/to/somewhere/' -e "pattern"
+
+
+For directories it's possible to exclude a particular directory(ies) through --exclude-dir parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:
+grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern" 
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+TO RUN THE COMMANDS WRITTEN IN A TEXT FILE FROM TERMINAL
+AND MAKE SURE YOU WRITE COMMANDS WITH SUDO PREFIXED TO IT :)
+
+To open the script file with gedit text viewer for example, use the following command:
+
+gedit post.sh
+To execute the script, first give execute permissions to it:
+
+chmod +x post.sh
+then you can execute it:
+
+./post.sh
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+awk command
+
+awk options 'selection _criteria {action }' input-file > output-file
+
+Options:
+
+-f program-file : Reads the AWK program source from the file 
+                  program-file, instead of from the 
+                  first command line argument.
+-F fs            : Use fs for the input field separator
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+ps aux|grep oauth
+
+to list all the processes that are running, their status and their resource usage.
+a = show processes for all users
+u = display the process's user/owner
+x = also show processes not attached to a terminal
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+ssh: ssh (SSH client) is a program for logging into a remote machine and for executing commands on a remote machine
+
+ssh <username>@<remote ip>
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+naukrideployer setup -environment=cluster -service.share=true -target=deploy -service.deploy=dev -service.env=dev -service.namespace=divyangana-test2  -nlogin.service.version=v8.20.2-beta405 -mnj.service.version=v15.24.1-beta509 -resman.service.version=v1.12.3-beta736  ./app.json
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+CRON COMMANDS:
+
+crontab -e    Edit crontab file, or create one if it doesn’t already exist.
+crontab -l    crontab list of cronjobs , display crontab file contents.
+crontab -r    Remove your crontab file.
+crontab -v    Display the last time you edited your crontab file. (This option is only available on a few systems.)
+
+
+*     *     *   *    *        command to be executed
+-     -     -   -    -
+|     |     |   |    |
+|     |     |   |    +----- day of week (0 - 6) (Sunday=0)
+|     |     |   +------- month (1 - 12)
+|     |     +--------- day of        month (1 - 31)
+|     +----------- hour (0 - 23)
++------------- min (0 - 59)
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+CAT Command :
+
+cat <file_name> : to show the contents of the file on the terminal
+cat -n <file_name> : to show the contents of the file on the terminal along with the line number
+
+------------------------------------------------------------------------------------------------------------------------------------------------

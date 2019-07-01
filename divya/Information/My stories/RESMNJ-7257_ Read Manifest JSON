@@ -1,0 +1,71 @@
+Download a file from given URL
+
+1. run "wget  -O #{release_path}/app/config/Manifest.json "http://js.naukimg.com/s/5/124/manifest.json""
+
+2. php script:
+
+	if (file_exists("config/Manifest.json")){		//if (is_readable($filename)) - to check if a file exists and is readable
+		if (filesize("config/Manifest.json")==0){	//it returns FALSE in case of failure
+			unlink("config/Manifest.json");
+		}
+		if (is_array(json_decode(, true);
+	}
+
+
+	Run this php script from capistrano script:
+	
+	 run "php -q #{release_path}/app/config/manifest.php"
+	//result =%x[ssh username@remote.server php -q #{myDeployPath}/myfile.php]
+
+3. Finally check if the file exists from Capistrano script:
+
+    do
+	 if test("[ -f {release_path}/app/config/Manifest.json ]")			//Capistrano3
+	    run "rm -f #{current_path} && ln -s #{release_path} #{current_path}"	//final line of deployment
+	    # the file exists	
+	 else
+	    # the file does not exist
+    end
+I
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+CHANGES IN RECIPE:
+
+if isChecked=='1'
+
+
+scp 
+apps/resmanrevamp/shared/104
+			105
+
+
+   run "wget  -O #{release_path}/app/config/104/Manifest.json "http://static.naukimg.com/s/5/104/manifest.json""
+   run "wget  -O #{release_path}/app/config/105/Manifest.json "http://static.naukimg.com/s/5/105/manifest.json""
+   run "php -q #{release_path}/app/config/manifest.php"
+   do
+     if test("[ -f {release_path}/app/config/104/Manifest.json ]") && test("[ -f {release_path}/app/config/105/Manifest.json ]") //Capistrano3
+       run "rm -f #{current_path} && ln -s #{release_path} #{current_path}"	//final line of deployment
+	    # the file exists	
+     else
+	    # the file does not exist
+   end
+
+
+
+
+ADDING PHP SCRIPT
+
+if (file_exists("config/104/Manifest.json") && file_exists("config/105/Manifest.json")){		//if (is_readable($filename)) 
+                                                                                                    -to check if a file exists and is readable
+   if (filesize("config/104/Manifest.json")==0 || filesize("config/105/Manifest.json")) {	//it returns FALSE in case of failure
+      unlink("config/104/Manifest.json");
+      unlink("config/105/Manifest.json");
+   }
+   if (is_array(json_decode(config/104/Manifest.json)==false && is_array(json_decode(config/105/Manifest.json)==false){
+      unlink("config/104/Manifest.json");
+      unlink("config/105/Manifest.json");
+   }
+}
+
+
+

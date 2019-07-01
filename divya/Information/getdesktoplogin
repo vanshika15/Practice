@@ -1,0 +1,74 @@
+<?php
+
+namespace LoginApi\v5;
+
+require_once(dirname(__FILE__)."/../../GlobalVars.php");
+require_once(dirname(__FILE__)."/../../includes/CommonFunc.inc.php");
+
+
+use LoginApi\Exceptions\ChangeYourPasswordException;
+use LoginApi\Exceptions\PasswordMismatchException;
+use LoginApi\Exceptions\ServiceException;
+use LoginApi\Exceptions\LoginException;
+use InvisibleRecaptcha\InvisibleRecaptchaFactory;
+use InvisibleRecaptcha\resources\RecaptchaException;
+
+class DesktopLoginNew extends \naukriBase
+{
+
+    public function formatInputData($data) {
+        $input = array();
+        foreach ($data['arrOptionalData'] as $key => $value) {
+            if ($key != 'g-recaptcha-response') {
+                $input[$key] = trim($value);
+            } else {
+                $input[$key] = $value;
+            }
+        }
+        return $input;
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+//    private function getLogger() {
+//        $objErrorLoggerManager = \LoggerFactory::getInstance()->getLogger('login');
+//        return $objErrorLoggerManager;
+//    }
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    //input['USERNAME'] can be username or email of jobseeker.
+
+
+    public function getLoginDetails() {
+        $inputValidator = $this->loginFactory()->getLoginValidation($this->arrData);
+        if (!$inputValidator->isValidateInputData($validationErrors)) {
+            return $this->createFailureResponseFromValidationErrors($validationErrors);
+        }
+
+        print_r($this->arrData);
+        $input = $this->formatInputData($this->arrData);
+        print_r($input);
+        die();
+
+        $loginManager = $this->loginFactory()->getDesktopLoginManager("v5");
+        try {
+            $captchaResponse = true;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+        //       $logger = $this->getLogger();
+        //       $msg = "THIS IS MY LOG";
+        //       $logger->log_exception($msg);
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+            if (!empty($input['g-recaptcha-response'])) {
+                $captchaResponse = $this->validateRecaptcha($input['g-recaptcha-response']);
+            }
+            if ($captchaResponse == true) {
+                $response = $loginManager->loginUser($input);
+                $count = $this->countFailedLoginAttempts($input['USERNAME']) ?: 0;
+                if ($count > 0) {
+                    $this->deleteCaptchaEntry($input['USERNAME']);
+

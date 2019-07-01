@@ -1,0 +1,61 @@
+Steps to use JAuthenticationManager to authenticate a Job Seeker
+---------------------------------------------------------------------
+
+Prerequisites:
+
+1. DbFramework
+      http://svn.infoedge.com/svn/Prayogshala/QA/DbFramework/ 
+
+2. autoload
+      http://svn.infoedge.com/svn/Prayogshala/QA/autoload/ not required with Symfony
+
+Steps:
+
+1. Delete Encryption.class.php and mnjSessionIdSource.php files if you are already using it.
+
+2. svn checkout http://svn.infoedge.com/svn/Prayogshala/QA/JAuthenticationManager/ in lib/third-party/ directory.
+
+3. svn checkout  http://svn.infoedge.com/svn/Prayogshala/QA/Encryptor in lib/third-party/ directory.
+
+4. Execute lib/third-party/autoload/all_class_map_creator.php to update classmap
+
+5. Define following constants in your application's config file-
+
+	- NC_REQUEST_PROVIDER : This constant can have two values
+
+		i)  SfRequestProvider - If you are using symfony
+		ii) ncSuperGlobalRequestProvider - If you are not using symfony
+
+	- _AUTH_SERVER_URL : URL for SignOn Server
+
+	- _Key_Old and _SubKey_Old  : Old encryption keys
+
+	- _Key_New and _SubKey_New  : New encryption keys
+
+
+6. Now to use AuthenticatorManager you need to do the following 
+
+	$auth = AuthenticatorManager::getAuthenticator();
+        
+	if($auth->isAuthenticated())
+	{
+		// It will only check whether the user is authentic or not
+	}
+
+	OR
+	
+	if($auth->forceAuthentication())
+	{
+		/* It will check whether the user is authentic. 
+		   If not then it will force user to login/relogin by redirecting him to _AUTH_SERVER_URL. 
+		   After successful login the user will be redirected to the application.	
+		*/
+	}
+
+You can also ask Authenticator for current session id or Username
+
+1. To get current session id use
+	$ID = $auth->getSessionId();
+
+2. and for username use
+	$Username = $auth->getUsername();

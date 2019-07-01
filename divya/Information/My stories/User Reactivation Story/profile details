@@ -1,0 +1,179 @@
+Associative array which has the keys - fullProfile, education, employment, socialLinks
+
+arr['fullProfile']:
+
+{
+	"profiles":
+    {
+    	"resumeHeadline": "This is a headline",
+    	"name":"MYname",
+    	"city":
+    	{                                                        {
+    		"id":8,                                        |  "id": 9999,
+    		"value":" Hyderabad / Secunderabad  ",         |  "subValue": "<name>"
+    		"subValue":""                                    }
+    	},
+    	"country":
+    	{
+    		"id":11
+    	},
+    	"experience":
+    	{
+    		"year":31,
+    		"month":""
+    	},
+    	"currency":"INR",
+    	"ctc":
+    	{
+    		"lacs":
+    		{
+    			"id":100
+    		},
+    		"thousands":
+    		{
+    			"id":"",
+    			"value":""
+    		}
+    	},
+    	"noticePeriod":
+    	{
+    		"id": "2"
+    	},
+    	"industry":
+    	{
+    		"id":"2",
+    		"value":"Hotels/Restaurants/Airlines/Travel"
+    	},
+    	"role":
+    	{
+    		"id":"",
+    		"value":""
+    	},
+    	"functionalArea":
+    	{
+    		"id":"",
+    		"value":""
+    	},
+    	"expectedCtcCurrency":"INR",
+    	"expectedCtc":
+   	    {
+   		    "lacs":
+   		     {
+   			     "id":3,
+   			     "value":" 3 Lacs  "
+   		     },
+   		     "thousands":{
+   			     "id":15,
+   			     "value":" 15 Thousand  "
+   		     }
+   	    },
+    	"desiredJobType":[
+    		"contractual"
+    	],
+    	"desiredEmploymentType":[
+		    "Part Time"
+		],
+    	"locationPrefId":
+    	{
+    		"0":
+    		{
+    			"id" : "258",
+    		    "value" : "Ahmedabad"
+    		},
+    		"1":
+    		{
+    			"id" : "259",
+    			"value" : "Bengaluru/Bangalore"
+    		},
+    		"2":
+    		{
+    			"id" : "264",
+    			"value" : "Kolkata"
+    		}
+    	},
+    	"keySkills": "Python , php",
+    	"summary": "This is the profile summary of my account"
+    },
+
+    "languages":
+	[
+		{
+			"languageId":-1,
+			"ability":[],
+			"lang":"hindi",
+			"proficiency":
+			{
+				"id":"1",
+				"value":"Beginner"
+			}
+		}
+	]
+}
+
+
+arr['education']:
+[
+   {
+	"course":
+	{
+		"id":2,                          | "id":9999
+		"value":" CS  "                  | "subValue": "<name>"
+		
+	},
+	"courseType":"P",
+	"educationType":
+	{
+		"id":2,
+		"value":" Masters/Post-Graduation 1  "
+		
+	},
+	"grade":
+	{
+		"id":"",
+		"value":"",
+		"subValue":""
+		
+	},
+	"institute":"Delhi College of Engineering (DCE), Delhi",
+	"specialisation":
+	{
+		"value":"CS",                    |  "id":9999
+		"id":1                           |  "subValue": "<name>"
+		
+	},
+	"yearOfCompletion":2013
+	
+   },
+   ....
+   ....
+]
+
+
+arr['employment']:
+[
+     {
+		"employmentType":"previous",                  | "current"
+	 	"jobDescription":"",
+		"organization":"cdaadC",
+		"designation":"Cdaad",
+		"startDate":"2016-03-01",
+		"endDate":"2016-04-01"                        | "0000-00-00"
+	        "employmentId":"a53215a15b5508d6e191a5d03bccf78da009f7960c9ccdb87e048c3bd0bbd3be"    | ""
+		
+     },
+     ....
+     ....
+]
+
+
+arr['socialLink']:
+[
+	{
+		"profile":"Social profile",
+		"url":"kjhjklkjhgfvbn.iug",
+		"description":"",
+		"onlineProfileId":"-1"
+		
+	}
+] 
+
